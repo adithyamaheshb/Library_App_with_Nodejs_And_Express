@@ -1,44 +1,16 @@
 var express = require('express');
 var bookRouter = express.Router();
-var router = function(nav) {
-    var books = [{
-            title: 'War and Peace',
-            genre: 'Historical Fiction',
-            author: 'Lev Nikolayevich Tolstoy',
-            read: false
-        },
-        {
-            title: 'Introduction to C Programming',
-            genre: 'Education',
-            author: 'Yashwanth Kanethkar',
-            read: false
-        },
-        {
-            title: 'CyberWar and Cyberterrorism',
-            genre: 'Education',
-            author: 'P.W.Singer',
-            read: false
-        }
-    ];
+var mongodb = require('mongodb').MongoClient;
+var ObjectId = require('mongodb').ObjectID;
 
+var router = function(nav) {
+    var bookController = require('../controllers/bookController')(null, nav);
+    bookRouter.use(bookController.middleware);
     bookRouter.route('/')
-        .get(function(req, res) {
-            res.render('bookListView', {
-                title: 'Books',
-                nav: nav,
-                books: books
-            });
-        });
+        .get(bookController.getIndex);
 
     bookRouter.route('/:id')
-        .get(function(req, res) {
-            var id = req.params.id;
-            res.render('bookView', {
-                title: 'Books',
-                nav: nav,
-                book: books[id]
-            });
-        });
+        .get(bookController.getById);
     return bookRouter;
 };
 
