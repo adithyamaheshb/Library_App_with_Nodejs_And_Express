@@ -5,18 +5,21 @@ var books = [{
         title: 'War and Peace',
         genre: 'Historical Fiction',
         author: 'Lev Nikolayevich Tolstoy',
+        bookId: 656,
         read: false
     },
     {
-        title: 'Introduction to C Programming',
+        title: 'An Introduction to C Programming',
         genre: 'Education',
-        author: 'Yashwanth Kanethkar',
+        author: 'Arnab Banerjee',
+        bookId: 23803963,
         read: false
     },
     {
-        title: 'CyberWar and Cyberterrorism',
+        title: 'Cybersecurity and Cyberwar',
         genre: 'Education',
         author: 'P.W.Singer',
+        bookId: 16182409,
         read: false
     }
 ];
